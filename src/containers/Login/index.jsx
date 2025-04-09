@@ -7,11 +7,11 @@ import { Button } from '../../components/Button';
 
 import {
   Container,
+  Form,
+  InputContainer,
   LeftContainer,
   RightContainer,
   Title,
-  Form,
-  InputContainer,
 } from './styles';
 
 export function Login() {
