@@ -44,20 +44,30 @@ export function Register() {
   });
 
   const onSubmit = async (data) => {
-    const response = await toast.promise(
-      api.post('/users', {
-        name: data.name,
-        email: data.email,
-        password: data.password,
-      }),
-      {
-        pending: 'Realizando cadastro...',
-        success: 'Cadastro realizado com sucesso!',
-        error: 'Erro ao realizar cadastro',
-      },
-    );
+    try {
+      const { status } = await api.post(
+        '/users',
+        {
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        },
+        {
+          validateStatus: () => true,
+        },
+      );
 
-    console.log(response);
+      if (status === 200 || status === 201) {
+        toast.success('Cadastro realizado com sucesso');
+      } else if (status === 400) {
+        toast.error('Email ja cadastrado! Faça login para continuar');
+      } else {
+        throw new Error();
+      }
+      // biome-ignore lint/correctness/noUnusedVariables: <explanation>
+    } catch (error) {
+      toast.error('Falha no sistema! Tente novamente');
+    }
   };
 
   return (
