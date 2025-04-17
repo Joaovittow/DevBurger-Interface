@@ -42,26 +42,35 @@ export function Login() {
   });
 
   const onSubmit = async (data) => {
-    const response = await toast.promise(
-      api.post('/session', {
-        email: data.email,
-        password: data.password,
-      }),
-      {
-        pending: 'Realizando login...',
-        success: {
-          render() {
-            setTimeout(() => {
-              navigate('/');
-            }, 2000);
-            return `Login realizado com sucesso!`;
-          },
+    try {
+      const response = await api.post(
+        '/session',
+        {
+          email: data.email,
+          password: data.password,
         },
-        error: 'Email ou senha incorretos',
-      },
-    );
+        {
+          validateStatus: () => true,
+        },
+      );
 
-    console.log(response);
+      const token = response.data.token;
+      localStorage.setItem('token', token);
+
+      if (response.status === 200 || response.status === 201) {
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+        toast.success('Login realizado com sucesso!');
+      } else if (response.status === 401) {
+        toast.error('Email ou senha incorretos');
+      } else {
+        throw new Error();
+      }
+      // biome-ignore lint/correctness/noUnusedVariables: <explanation>
+    } catch (error) {
+      toast.error('Falha no sistema! Tente novamente');
+    }
   };
 
   return (
