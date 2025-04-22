@@ -21,9 +21,10 @@ top: 10%;
 
 export const Container = styled.section`
 background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${Background}');
-height: 100vh;
 background-position: center;
 background-size: cover;
 `;
 
-export const Content = styled.div``;
+export const Content = styled.div`
+    padding-bottom: 70px;
+`;
