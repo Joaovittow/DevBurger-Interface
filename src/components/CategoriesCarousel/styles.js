@@ -4,6 +4,7 @@ export const Container = styled.div`
     .carousel-item{
     padding-right: 40px;
     padding-left: 40px;}
+
 `;
 
 export const Title = styled.h2`
@@ -32,6 +33,7 @@ export const ContainerItems = styled.div`
     background-size: cover;
     background-position: center;
     border-radius: 20px;
+    cursor: grab;
 
     display: flex;
     align-items: center;
