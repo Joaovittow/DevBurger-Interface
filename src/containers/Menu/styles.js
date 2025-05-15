@@ -9,7 +9,7 @@ export const Container = styled.div`
     background-color: #f0f0f0;
 
     background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${Background}');
-    background-position: center;
+    background-position: ;
 `;
 
 export const Banner = styled.div`
