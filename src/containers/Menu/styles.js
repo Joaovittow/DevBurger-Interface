@@ -54,12 +54,14 @@ export const CategoryButton = styled(Link)`
     text-decoration: none;
     cursor: pointer;
     background: none;
-    padding-bottom: 5px;
-    line-height: 20px;
-    border-bottom: 3px solid #9758a6;
-    color: #9758a6;
+    color: ${(props) => (props.$isActiveCategory ? '#9758a6' : '#696969')};
     font-size: 24px;
     font-weight: 500;
+    padding-bottom: 5px;
+    line-height: 20px;
+    border: none;
+    border-bottom: ${(props) => props.$isActiveCategory && '3px solid #9758a6'};
+
 `;
 
 export const ProductsContainer = styled.div`

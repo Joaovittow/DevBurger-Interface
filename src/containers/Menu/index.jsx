@@ -73,6 +73,7 @@ export function Menu() {
         {categories.map((category) => (
           <CategoryButton
             key={category.id}
+            $isActiveCategory={category.id === activeCategory}
             onClick={() => {
               navigate(
                 {
