@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { formatPrice } from '../../../utils/formatPrice.js';
 import { CardProduct } from '../../components/CardProduct/index.jsx';
 import { api } from '../../services/api.js';
@@ -14,9 +14,22 @@ export function Menu() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [activeCategory, setActiveCategory] = useState(0);
 
   const navigate = useNavigate();
+
+  const { search } = useLocation();
+
+  const searchParams = new URLSearchParams(search);
+
+  const [activeCategory, setActiveCategory] = useState(() => {
+    const searchValue = +searchParams.get('categoria');
+
+    if (searchValue) {
+      return searchValue;
+    }
+
+    return 0;
+  });
 
   useEffect(() => {
     async function loadCategories() {
