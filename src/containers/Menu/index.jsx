@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { formatPrice } from '../../../utils/formatPrice.js';
 import { CardProduct } from '../../components/CardProduct/index.jsx';
 import { api } from '../../services/api.js';
+import { formatPrice } from '../../utils/formatPrice.js';
 import {
   Banner,
   CategoryButton,
