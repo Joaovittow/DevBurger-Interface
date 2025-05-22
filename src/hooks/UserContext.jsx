@@ -5,8 +5,14 @@ const UserContext = createContext({});
 export const UserProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({ id: 1, name: 'João' });
 
+  const putUserData = (userInfo) => {
+    setUserInfo(userInfo);
+
+    localStorage.setItem('devburger:userData', JSON.stringify(userInfo));
+  };
+
   return (
-    <UserContext.Provider value={{ userInfo, setUserInfo }}>
+    <UserContext.Provider value={{ userInfo, putUserData }}>
       {children}
     </UserContext.Provider>
   );

@@ -6,6 +6,7 @@ import * as yup from 'yup';
 
 import Logo from '../../assets/logo.svg';
 import { Button } from '../../components/Button';
+import { useUser } from '../../hooks/UserContext';
 import { api } from '../../services/api';
 
 import {
@@ -20,6 +21,7 @@ import {
 
 export function Login() {
   const navigate = useNavigate();
+  const { putUserData } = useUser();
   const schema = yup
     .object({
       email: yup
@@ -43,33 +45,20 @@ export function Login() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await api.post(
-        '/session',
-        {
-          email: data.email,
-          password: data.password,
-        },
-        {
-          validateStatus: () => true,
-        },
-      );
+      const response = await api.post('/session', {
+        email: data.email,
+        password: data.password,
+      });
 
-      const token = response.data.token;
-      localStorage.setItem('token', token);
+      putUserData(response.data);
 
-      if (response.status === 200 || response.status === 201) {
-        setTimeout(() => {
-          navigate('/');
-        }, 2000);
-        toast.success('Login realizado com sucesso!');
-      } else if (response.status === 401) {
-        toast.error('Email ou senha incorretos');
-      } else {
-        throw new Error();
-      }
+      toast.success('Seja Bem-vindo(a)!', {
+        autoClose: 2000,
+        onClose: () => navigate('/'),
+      });
       // biome-ignore lint/correctness/noUnusedVariables: <explanation>
     } catch (error) {
-      toast.error('Falha no sistema! Tente novamente');
+      toast.error('Email ou senha incorretos');
     }
   };
 
