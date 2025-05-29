@@ -9,15 +9,34 @@ import {
   Profile,
 } from './styles';
 
+import { useNavigate, useResolvedPath } from 'react-router-dom';
+import { useUser } from '../../hooks/UserContext';
+
 import { ShoppingCartIcon, UserCircleIcon } from '@phosphor-icons/react';
 export function Header() {
+  const navigate = useNavigate();
+
+  const { logout, userInfo } = useUser();
+
+  const { pathname } = useResolvedPath();
+
+  function handleLogout() {
+    logout();
+    navigate('/login');
+  }
+
   return (
     <Container>
       <Content>
         <Navigation>
           <div>
-            <HeaderLink>Home</HeaderLink>
-            <HeaderLink>Cardárpio</HeaderLink>
+            <HeaderLink to={'/'} $isActive={pathname === '/'}>
+              Home
+            </HeaderLink>
+            <hr />
+            <HeaderLink to={'/cardapio'} $isActive={pathname === '/cardapio'}>
+              Cardárpio
+            </HeaderLink>
           </div>
         </Navigation>
         <Options>
@@ -25,9 +44,9 @@ export function Header() {
             <UserCircleIcon color="#fff" size={24} />
             <div>
               <p>
-                Olá, <span>João</span>
+                Olá, <span>{userInfo.name}</span>
               </p>
-              <Logout>Sair</Logout>
+              <Logout onClick={handleLogout}>Sair</Logout>
             </div>
           </Profile>
           <LinkContainer>
