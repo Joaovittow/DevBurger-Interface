@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+import { Footer } from '../components/Footer';
 import { Header } from '../components/Header';
 import { Home } from '../containers/Home';
 import { Login } from '../containers/Login';
@@ -13,6 +14,7 @@ export const router = createBrowserRouter([
       <>
         <Header />
         <Home />
+        <Footer />
       </>
     ),
   },
