@@ -51,7 +51,9 @@ export function Header() {
           </Profile>
           <LinkContainer>
             <ShoppingCartIcon color="#fff" size={24} />
-            <HeaderLink>Carrinho</HeaderLink>
+            <HeaderLink to={'/carrinho'} $isActive={pathname === '/carrinho'}>
+              Carrinho
+            </HeaderLink>
           </LinkContainer>
         </Options>
       </Content>
