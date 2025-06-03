@@ -4,10 +4,13 @@ import Texture from '../../assets/texture.svg';
 
 export const Container = styled.div`
     width: 100%;
-    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${Background}');
+    background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${Background}');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     min-height: 100vh;
+    margin: 0;
 `;
 export const Banner = styled.div`
     background: url('${Texture}');
