@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-background-color: #1f1f1f;
+background-color: ${(props) => props.theme.mainBlack};
 width: 100%;
 height: 72px;
 padding: 0 56px;
@@ -38,8 +38,8 @@ height: 72px;
 `;
 
 export const HeaderLink = styled(Link)`
-color: ${(props) => (props.$isActive ? '#9758a6' : '#fff')};
-border-bottom: ${(props) => (props.$isActive ? '1px solid #9758a6' : 'none')};
+color: ${(props) => (props.$isActive ? (props) => props.theme.purple : (props) => props.theme.white)};
+border-bottom: ${(props) => (props.$isActive ? `1px solid ${(props) => props.theme.purple}` : 'none')};
 text-decoration: none;
 font-size: 14px;
 transition: color 200ms ;

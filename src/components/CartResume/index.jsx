@@ -27,30 +27,30 @@ export function CartResume() {
 
   const submitOrder = async () => {
     const products = cartProducts.map((product) => {
-      return { id: product.id, quantity: product.quantity };
+      return {
+        id: product.id,
+        quantity: product.quantity,
+        price: product.price,
+      };
     });
 
     try {
-      const { status } = await api.post(
-        '/orders', { products }, {
-        validateStatus: () => true,
-      },
-      );
+      const { data } = await api.post('/create-payment-intent', { products });
 
-      if (status === 200 || status === 201) {
-        setTimeout(() => {
-          navigate('/');
-          clearCart();
-        }, 2000);
-        toast.success('Pedido realizado com sucesso!');
-      } else if (status === 400) {
-        toast.error('Falha ao realizar pedido!');
-      } else {
-        throw new Error();
-      }
-      // biome-ignore lint/correctness/noUnusedVariables: <explanation>
+      navigate('/checkout', {
+        state: data,
+      });
     } catch (error) {
-      toast.error('Falha no sistema! Tente novamente');
+      toast.error('Erro, tente novamente', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     }
   };
 

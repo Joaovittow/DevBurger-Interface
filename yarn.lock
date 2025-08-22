@@ -168,7 +168,7 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.27.1"
 
-"@biomejs/biome@^1.9.4":
+"@biomejs/biome@1.9.4":
   version "1.9.4"
   resolved "https://registry.npmjs.org/@biomejs/biome/-/biome-1.9.4.tgz"
   integrity sha512-1rkd7G70+o9KkTn5KLmDYXihGoTaIGO9PIIN2ZB7UJxFrWw04CZHPYiMRjYsaDvVV7hP1dYNRLxSANLaBFGpog==
@@ -704,6 +704,18 @@
     "@sigstore/bundle" "^3.1.0"
     "@sigstore/core" "^2.0.0"
     "@sigstore/protobuf-specs" "^0.4.1"
+
+"@stripe/react-stripe-js@^3.9.1":
+  version "3.9.1"
+  resolved "https://registry.npmjs.org/@stripe/react-stripe-js/-/react-stripe-js-3.9.1.tgz"
+  integrity sha512-t5KZiu7jkUTHOx0adGSlSj4xPpFSvW6BsgIRQHNXqhHeYBH0mpddVUZsO33WM1m6Vyd1Wl96JoBhwEsw8jMHTQ==
+  dependencies:
+    prop-types "^15.7.2"
+
+"@stripe/stripe-js@^7.8.0", "@stripe/stripe-js@>=1.44.1 <8.0.0":
+  version "7.8.0"
+  resolved "https://registry.npmjs.org/@stripe/stripe-js/-/stripe-js-7.8.0.tgz"
+  integrity sha512-DNXRfYUgkZlrniQORbA/wH8CdFRhiBSE0R56gYU0V5vvpJ9WZwvGrz9tBAZmfq2aTgw6SK7mNpmTizGzLWVezw==
 
 "@tufjs/canonical-json@2.0.0":
   version "2.0.0"
@@ -1851,7 +1863,7 @@ promzard@^2.0.0:
   dependencies:
     read "^4.0.0"
 
-prop-types@^15.8.1:
+prop-types@^15.7.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -1873,7 +1885,7 @@ proxy-from-env@^1.1.0:
 qrcode-terminal@^0.12.0:
   version "0.12.0"
 
-"react-dom@^18 || ^19", react-dom@^18.3.1, "react-dom@>= 16.8", "react-dom@>= 16.8.0", react-dom@>=18:
+"react-dom@^18 || ^19", react-dom@^18.3.1, "react-dom@>= 16.8", "react-dom@>= 16.8.0", "react-dom@>=16.8.0 <20.0.0", react-dom@>=18:
   version "18.3.1"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-18.3.1.tgz"
   integrity sha512-5m4nQKp+rZRb09LNH59GM4BxTh9251/ylbKIbpe7TpGxfJ+9kv6BLkLBXIjjspbgbnIBNqlI23tRnTWT0snUIw==
@@ -1927,7 +1939,7 @@ react-toastify@^11.0.5:
   dependencies:
     clsx "^2.1.1"
 
-"react@^16.8.0 || ^17 || ^18 || ^19", "react@^18 || ^19", react@^18.3.1, "react@>= 16.8", "react@>= 16.8.0", react@>=18:
+"react@^16.8.0 || ^17 || ^18 || ^19", "react@^18 || ^19", react@^18.3.1, "react@>= 16.8", "react@>= 16.8.0", "react@>=16.8.0 <20.0.0", react@>=18:
   version "18.3.1"
   resolved "https://registry.npmjs.org/react/-/react-18.3.1.tgz"
   integrity sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==
