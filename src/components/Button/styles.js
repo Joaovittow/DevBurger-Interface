@@ -5,10 +5,10 @@ export const ContainerButton = styled.button`
   height: 52px;
   border-radius: 5px;
   border: none;
-  background-color: #9758a6;
-  color: #fff;
+  background-color: ${(props) => props.theme.purple};
+  color: ${(props) => props.theme.white};
   font-size: 30px;
-  font-family: 'Road Rage', sans-serif;
+  font-family: ${(props) => props.theme.roadRageFont};
 
   &:hover {
     background: #6f3576;

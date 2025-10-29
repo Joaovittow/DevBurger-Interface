@@ -6,7 +6,7 @@ import BannerHamburger from '../../assets/bannerHamburger.svg';
 export const Container = styled.div`
     width: 100%;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: ${(props) => props.theme.secondWhite};
 
     background:linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${Background}');
     background-size: cover;
@@ -28,20 +28,20 @@ export const Banner = styled.div`
     background: url('${BannerHamburger}') no-repeat;
     background-size: cover;
     background-position: center;
-    background-color: #1f1f1f;
+    background-color: ${(props) => props.theme.mainBlack};
 
     h1{
-        font-family: 'Road Rage', sans-serif;
+        font-family: ${(props) => props.theme.roadRageFont};
         font-size: 80px;
         line-height: 65px;
-        color: #ffffff;
+        color: ${(props) => props.theme.white};
         position: absolute;
         right: 20%;
         top: 30%;
 
         span{
             display: block;
-            color: #ffffff;
+            color: ${(props) => props.theme.white};
             font-size: 20px
         }
     }
@@ -59,13 +59,13 @@ export const CategoryButton = styled(Link)`
     text-decoration: none;
     cursor: pointer;
     background: none;
-    color: ${(props) => (props.$isActiveCategory ? '#9758a6' : '#696969')};
+    color: ${(props) => (props.$isActiveCategory ? (props) => props.theme.purple : '#696969')};
     font-size: 24px;
     font-weight: 500;
     padding-bottom: 5px;
     line-height: 20px;
     border: none;
-    border-bottom: ${(props) => props.$isActiveCategory && '3px solid #9758a6'};
+    border-bottom: ${(props) => props.$isActiveCategory && `3px solid ${(props) => props.theme.purple}`};
 
 `;
 
