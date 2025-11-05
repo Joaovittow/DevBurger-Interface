@@ -50,12 +50,20 @@ export function Login() {
         password: data.password,
       });
 
-      putUserData(response.data);
+      const userData = response.data;
+      putUserData(userData);
 
       toast.success('Seja Bem-vindo(a)!', {
         autoClose: 2000,
-        onClose: () => navigate('/'),
       });
+      setTimeout(() => {
+        if (userData?.admin) {
+          navigate('/admin/pedidos');
+        } else {
+          navigate('/');
+        }
+      }, 500);
+
       // biome-ignore lint/correctness/noUnusedVariables: <explanation>
     } catch (error) {
       toast.error('Email ou senha incorretos');
