@@ -1,8 +1,7 @@
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Image } from '@phosphor-icons/react';
-
+import { ImageIcon } from '@phosphor-icons/react';
 import {
   Container,
   Form,
@@ -13,8 +12,8 @@ import {
   Select,
   ErrorMessage,
   ContainerCheckbox,
+  SubmitButton,
 } from './styles';
-import { SubmitButton } from './styles';
 import { useEffect, useState } from 'react';
 import { api } from '../../../services/api';
 import { toast } from 'react-toastify';
@@ -32,11 +31,10 @@ const schema = yup.object({
 });
 
 export function EditProduct() {
-  const [fileName, setFileName] = useState(null);
+  const [preview, setPreview] = useState(null);
   const [categories, setCategories] = useState([]);
 
   const navigate = useNavigate();
-
   const {
     state: { product },
   } = useLocation();
@@ -47,7 +45,12 @@ export function EditProduct() {
       setCategories(data);
     }
     loadCategories();
-  }, []);
+
+    // Mostra a imagem atual do produto
+    if (product?.url) {
+      setPreview(product.url);
+    }
+  }, [product]);
 
   const {
     register,
@@ -65,6 +68,10 @@ export function EditProduct() {
     productFormData.append('price', data.price * 100);
     productFormData.append('category_id', data.category.id);
     productFormData.append('offer', data.offer);
+
+    if (data.file && data.file.length > 0) {
+      productFormData.append('file', data.file[0]);
+    }
 
     await toast.promise(
       api.put(`/products/${product.id}`, productFormData, {
@@ -107,17 +114,35 @@ export function EditProduct() {
 
         <InputGroup>
           <LabelUpload>
-            <Image />
+            <ImageIcon />
             <input
               type="file"
               accept="image/png, image/jpeg"
               onChange={(event) => {
                 const file = event.target.files[0];
-                setFileName(file?.name || null);
-                setValue('file', event.target.files);
+                if (file) {
+                  const imageUrl = URL.createObjectURL(file);
+                  setPreview(imageUrl);
+                  setValue('file', event.target.files);
+                }
               }}
             />
-            {fileName || 'Upload do produto'}
+
+            {preview ? (
+              <img
+                src={preview}
+                alt="Pré-visualização do produto"
+                style={{
+                  width: '100%',
+                  maxHeight: '200px',
+                  objectFit: 'cover',
+                  borderRadius: '8px',
+                  marginTop: '8px',
+                }}
+              />
+            ) : (
+              'Upload do produto'
+            )}
           </LabelUpload>
           <ErrorMessage>{errors?.file?.message}</ErrorMessage>
         </InputGroup>

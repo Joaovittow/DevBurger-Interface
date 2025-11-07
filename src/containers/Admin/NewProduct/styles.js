@@ -40,24 +40,32 @@ border: none;
 `;
 
 export const LabelUpload = styled.label`
-cursor: pointer;
-border: 1px dashed ${(props) => props.theme.white};
-border-radius: 5px;
-padding: 10px;
-display: flex;
-color: ${(props) => props.theme.white};
-margin: 20px 0;
+  cursor: pointer;
+  border: 1px dashed ${(props) => props.theme.white};
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${(props) => props.theme.white};
+  margin: 20px 0;
+  text-align: center;
 
->svg{
+  > svg {
     width: 20px;
     height: 20px;
     fill: ${(props) => props.theme.white};
-    margin-right: 4px;
-}
+    margin-bottom: 8px;
+  }
 
-input{
+  img {
+    margin-top: 8px;
+    border-radius: 5px;
+  }
+
+  input {
     display: none;
-}
+  }
 `;
 
 export const Select = styled(ReactSelect)``;

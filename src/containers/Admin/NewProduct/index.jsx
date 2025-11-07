@@ -122,11 +122,31 @@ export function NewProduct() {
               accept="image/png, image/jpeg"
               onChange={(event) => {
                 const file = event.target.files[0];
-                setFileName(file?.name || null);
-                setValue('file', event.target.files);
+                if (file) {
+                  const imageUrl = URL.createObjectURL(file);
+                  setFileName(imageUrl);
+                  setValue('file', event.target.files);
+                } else {
+                  setFileName(null);
+                }
               }}
             />
-            {fileName || 'Upload do produto'}
+
+            {fileName ? (
+              <img
+                src={fileName}
+                alt="Pré-visualização do produto"
+                style={{
+                  width: '100%',
+                  maxHeight: '200px',
+                  objectFit: 'cover',
+                  borderRadius: '8px',
+                  marginTop: '8px',
+                }}
+              />
+            ) : (
+              'Upload do produto'
+            )}
           </LabelUpload>
           <ErrorMessage>{errors?.file?.message}</ErrorMessage>
         </InputGroup>
