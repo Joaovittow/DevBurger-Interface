@@ -8,9 +8,13 @@ import Paper from '@mui/material/Paper';
 import { useEffect, useState } from 'react';
 import { api } from '../../../services/api';
 import { Container, ProductImage, EditButton } from './styles';
-import { CheckCircle, Pencil, XCircle } from '@phosphor-icons/react';
 import { formatPrice } from '../../../utils/formatPrice';
 import { useNavigate } from 'react-router-dom';
+import {
+  CheckCircleIcon,
+  PencilIcon,
+  XCircleIcon,
+} from '@phosphor-icons/react';
 
 export function Products() {
   const [products, setProducts] = useState([]);
@@ -27,9 +31,9 @@ export function Products() {
 
   function isOffer(offer) {
     if (offer) {
-      return <CheckCircle color="#61a120" size="28" />;
+      return <CheckCircleIcon color="#61a120" size="28" />;
     } else {
-      return <XCircle color="#cf3057" size="28" />;
+      return <XCircleIcon color="#cf3057" size="28" />;
     }
   }
 
@@ -68,7 +72,7 @@ export function Products() {
                 </TableCell>
                 <TableCell align="center">
                   <EditButton onClick={() => editProduct(product)}>
-                    <Pencil />
+                    <PencilIcon />
                   </EditButton>
                 </TableCell>
               </TableRow>
