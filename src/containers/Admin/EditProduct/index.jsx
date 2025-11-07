@@ -11,7 +11,6 @@ import {
   LabelUpload,
   Select,
   ErrorMessage,
-  ContainerCheckbox,
   SubmitButton,
 } from './styles';
 import { useEffect, useState } from 'react';
@@ -27,7 +26,6 @@ const schema = yup.object({
     .required('Digite o preço do produto')
     .typeError('Digite um valor válido'),
   category: yup.object().required('Escolha a categoria'),
-  offer: yup.bool(),
 });
 
 export function EditProduct() {
@@ -67,7 +65,6 @@ export function EditProduct() {
     productFormData.append('name', data.name);
     productFormData.append('price', data.price * 100);
     productFormData.append('category_id', data.category.id);
-    productFormData.append('offer', data.offer);
 
     if (data.file && data.file.length > 0) {
       productFormData.append('file', data.file[0]);
@@ -166,17 +163,6 @@ export function EditProduct() {
             )}
           />
           <ErrorMessage>{errors?.category?.message}</ErrorMessage>
-        </InputGroup>
-
-        <InputGroup>
-          <ContainerCheckbox>
-            <input
-              type="checkbox"
-              defaultChecked={product.offer}
-              {...register('offer')}
-            />
-            <Label> Produto em oferta?</Label>
-          </ContainerCheckbox>
         </InputGroup>
 
         <SubmitButton>Editar Produto</SubmitButton>

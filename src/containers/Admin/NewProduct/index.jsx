@@ -11,7 +11,6 @@ import {
   LabelUpload,
   Select,
   ErrorMessage,
-  ContainerCheckbox,
 } from './styles';
 import { SubmitButton } from './styles';
 import { useEffect, useState } from 'react';
@@ -28,7 +27,6 @@ const schema = yup.object({
     .required('Digite o preço do produto')
     .typeError('Digite um valor válido'),
   category: yup.object().required('Escolha a categoria'),
-  offer: yup.bool(),
   file: yup
     .mixed()
     .test(
@@ -81,7 +79,7 @@ export function NewProduct() {
     productFormData.append('price', data.price * 100);
     productFormData.append('category_id', data.category.id);
     productFormData.append('file', data.file[0]);
-    productFormData.append('offer', data.offer);
+    productFormData.append('offer', false);
 
     await toast.promise(
       api.post('/products', productFormData, {
@@ -168,12 +166,6 @@ export function NewProduct() {
             )}
           />
           <ErrorMessage>{errors?.category?.message}</ErrorMessage>
-        </InputGroup>
-        <InputGroup>
-          <ContainerCheckbox>
-            <input type="checkbox" {...register('offer')} />
-            <Label> Produto em oferta?</Label>
-          </ContainerCheckbox>
         </InputGroup>
         <SubmitButton>Adicionar Produto</SubmitButton>
       </Form>

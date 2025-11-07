@@ -2,7 +2,6 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
@@ -10,7 +9,7 @@ import { api } from '../../../services/api';
 import { Row } from './row';
 import { useEffect, useState } from 'react';
 import { orderStatusOptions } from './orderStatus';
-import { Filter, FilterOption } from './styles';
+import { Filter, FilterOption, StyledTableHead } from './styles';
 
 export function Orders() {
   const [orders, setOrders] = useState([]);
@@ -88,7 +87,7 @@ export function Orders() {
       </Filter>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
-          <TableHead>
+          <StyledTableHead>
             <TableRow>
               <TableCell />
               <TableCell>Pedido</TableCell>
@@ -96,7 +95,7 @@ export function Orders() {
               <TableCell>Data do Pedido</TableCell>
               <TableCell>Status</TableCell>
             </TableRow>
-          </TableHead>
+          </StyledTableHead>
           <TableBody>
             {rows.map((row) => (
               <Row

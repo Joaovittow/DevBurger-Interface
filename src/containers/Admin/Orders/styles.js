@@ -1,5 +1,24 @@
 import styled from 'styled-components';
 import Select from 'react-select';
+import TableHead from '@mui/material/TableHead';
+
+export const StyledTableHead = styled(TableHead)`
+  & .MuiTableCell-root {
+    padding: 16px;
+    background-color: ${(props) => props.theme.secondBlack};
+    color: ${(props) => props.theme.white};
+    border-bottom: 1px solid ${(props) => props.theme.lightGray};
+    font-weight: 500;
+  }
+
+  & .MuiTableCell-root:first-child {
+    border-top-left-radius: 20px;
+  }
+
+  & .MuiTableCell-root:last-child {
+    border-top-right-radius: 20px;
+  }
+`;
 
 export const ProductImage = styled.img`
     height: 80px;
