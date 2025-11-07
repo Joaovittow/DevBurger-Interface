@@ -107,7 +107,7 @@ export function Row({ row, setOrders, orders }) {
 }
 
 Row.propTypes = {
-  order: PropTypes.array.isRequired,
+  orders: PropTypes.array.isRequired,
   setOrders: PropTypes.func.isRequired,
   row: PropTypes.shape({
     orderId: PropTypes.string.isRequired,

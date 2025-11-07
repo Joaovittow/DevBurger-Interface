@@ -15,7 +15,7 @@ export function SideNavAdmin() {
       <NavLinkContainer>
         {navLinks.map((link) => (
           <NavLink
-            key={link.id}
+            key={link.path}
             to={link.path}
             $isActive={pathname === link.path}
           >

@@ -9,3 +9,6 @@ export * from './Admin/EditProduct';
 export * from './Admin/NewProduct';
 export * from './Admin/Orders';
 export * from './Admin/Products';
+export * from './Admin/Categories';
+export * from './Admin/NewCategory';
+export * from './Admin/EditCategory';

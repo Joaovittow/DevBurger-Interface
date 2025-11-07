@@ -2,12 +2,15 @@ import { Route, Routes } from 'react-router-dom';
 
 import {
   Cart,
+  Categories,
   Checkout,
   CompletePayment,
+  EditCategory,
   EditProduct,
   Home,
   Login,
   Menu,
+  NewCategory,
   NewProduct,
   Orders,
   Products,
@@ -32,6 +35,9 @@ export function Router() {
         <Route path="/admin/novo-produto" element={<NewProduct />} />
         <Route path="/admin/editar-produto" element={<EditProduct />} />
         <Route path="/admin/produtos" element={<Products />} />
+        <Route path="/admin/categorias" element={<Categories />} />
+        <Route path="/admin/nova-categoria" element={<NewCategory />} />
+        <Route path="/admin/editar-categoria" element={<EditCategory />} />
       </Route>
 
       <Route path="/login" element={<Login />} />
