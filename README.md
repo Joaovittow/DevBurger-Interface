@@ -106,50 +106,50 @@ Certifique-se de que a [DevBurger API](https://github.com/Joaovittow/DevBurger-A
 
 ### Configuração da API
 
-A URL base da API está configurada em `src/services/api.js`. Para alterar a URL da API:
+A URL base da API é configurada via variável de ambiente `VITE_API_URL`. Use o arquivo `.env-example` como base para criar o seu `.env`:
 
-```javascript
-// src/services/api.js
+```env
+VITE_API_URL=http://localhost:3001
+```
+
+O arquivo `src/services/api.js` já consome essa variável:
+
+```1:8:src/services/api.js
+import Axios from 'axios';
+
 export const api = Axios.create({
-  baseURL: 'http://localhost:3001', // Altere para a URL da sua API
+  baseURL: import.meta.env.VITE_API_URL,
 });
 ```
 
 ### Configuração do Stripe
 
-A chave pública do Stripe está configurada em `src/config/stripeConfig.js`. Para usar sua própria chave:
+A chave pública do Stripe é configurada via variável de ambiente `VITE_STRIPE_PUBLIC_KEY`. Use o `.env-example` como base:
 
-```javascript
-// src/config/stripeConfig.js
-const stripePromisse = loadStripe(
-  'sua-chave-publica-stripe-aqui'
-);
+```env
+VITE_STRIPE_PUBLIC_KEY=pk_test_sua-chave-stripe
 ```
 
-**Nota:** Em produção, considere usar variáveis de ambiente para armazenar essas configurações sensíveis.
+O arquivo `src/config/stripeConfig.js` já consome essa variável:
+
+```1:8:src/config/stripeConfig.js
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromisse = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
+export default stripePromisse;
+```
 
 ### Variáveis de Ambiente (Recomendado)
 
-Crie um arquivo `.env` na raiz do projeto:
+Crie um arquivo `.env` na raiz do projeto com base no `.env-example`:
 
 ```env
 VITE_API_URL=http://localhost:3001
 VITE_STRIPE_PUBLIC_KEY=pk_test_sua-chave-stripe
 ```
 
-E atualize os arquivos de configuração para usar essas variáveis:
-
-```javascript
-// src/services/api.js
-export const api = Axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3001',
-});
-
-// src/config/stripeConfig.js
-const stripePromisse = loadStripe(
-  import.meta.env.VITE_STRIPE_PUBLIC_KEY || 'pk_test_...'
-);
-```
+Após criar/alterar o `.env`, reinicie o servidor de desenvolvimento.
 
 ## ▶️ Como Executar
 
@@ -162,28 +162,6 @@ yarn dev
 
 A aplicação estará disponível em `http://localhost:5173` (ou outra porta disponível).
 
-### Build para Produção
-```bash
-npm run build
-# ou
-yarn build
-```
-
-Os arquivos otimizados serão gerados na pasta `dist/`.
-
-### Preview da Build
-```bash
-npm run preview
-# ou
-yarn preview
-```
-
-### Linting
-```bash
-npm run lint
-# ou
-yarn lint
-```
 
 ## 🏗️ Estrutura do Projeto
 
@@ -299,7 +277,6 @@ Esta interface se conecta com a [DevBurger API](https://github.com/Joaovittow/De
 - `GET /orders` - Listar pedidos
 - `POST /orders` - Criar pedido
 - `PUT /orders/:id` - Atualizar status do pedido (admin)
-- `POST /create-payment-intent` - Criar intent de pagamento
 
 Para mais detalhes sobre a API, consulte a [documentação da DevBurger API](https://github.com/Joaovittow/DevBurger-API).
 
@@ -370,9 +347,6 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou pull r
 4. Push para a branch (`git push origin feature/MinhaFeature`)
 5. Abra um Pull Request
 
-## 📄 Licença
-
-Este projeto está sob a licença ISC.
 
 ## 🔗 Links Relacionados
 
@@ -383,4 +357,4 @@ Este projeto está sob a licença ISC.
 
 ---
 
-**Desenvolvido com ❤️ por [Joaovittow](https://github.com/joaovittow)**
+**Desenvolvido por [Joaovittow](https://github.com/joaovittow)**
