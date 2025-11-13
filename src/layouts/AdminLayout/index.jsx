@@ -2,13 +2,22 @@ import { Outlet, Navigate } from 'react-router-dom';
 import { SideNavAdmin } from '../../components/SideNavAdmin';
 import { Container } from './styles';
 import { Footer } from '../../components';
+import { useAuth } from '../../hooks/useAuth';
 
 export function AdminLayout() {
-  const { admin: isAdmin } = JSON.parse(
-    localStorage.getItem('devburger:userData'),
-  );
+  const { isAuthenticated, isAdmin, isLoading } = useAuth();
 
-  return isAdmin ? (
+  // Mostrar loading enquanto verifica autenticação
+  if (isLoading) {
+    return null; // Ou um componente de loading
+  }
+
+  // Verificar se usuário está autenticado e é admin
+  if (!isAuthenticated || !isAdmin) {
+    return <Navigate to="/login" />;
+  }
+
+  return (
     <Container>
       <SideNavAdmin />
       <main>
@@ -18,7 +27,5 @@ export function AdminLayout() {
       </main>
       <Footer />
     </Container>
-  ) : (
-    <Navigate to="/login" />
   );
 }
